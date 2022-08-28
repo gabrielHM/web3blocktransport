@@ -3,10 +3,11 @@ import { observer } from "mobx-react-lite"
 import { ViewStyle } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { NavigatorParamList } from "../../navigators"
-import { Screen, Text } from "../../components"
+import { Screen, TransportInfoCard, ChallengeList } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../../models"
 import { color } from "../../theme"
+import { Box, View, Text, Button } from "native-base"
 
 const ROOT: ViewStyle = {
   backgroundColor: color.palette.black,
@@ -29,8 +30,9 @@ export const ChallengesScreen: FC<StackScreenProps<NavigatorParamList, "challeng
   // Pull in navigation via hook
   // const navigation = useNavigation()
   return (
-    <Screen style={ROOT} preset="scroll">
-      <Text preset="header" text="challenges" />
-    </Screen>
+    <View>
+      <TransportInfoCard></TransportInfoCard>
+      <ChallengeList></ChallengeList>
+    </View>
   )
 })

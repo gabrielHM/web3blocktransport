@@ -8,7 +8,7 @@ import React from "react"
 import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen, WalletConnectScreen, HomeScreen, SettingsScreen } from "../screens"
+import { WelcomeScreen, DemoScreen, DemoListScreen, WalletConnectScreen, HomeScreen, SettingsScreen, ChallengesScreen } from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -32,6 +32,7 @@ export type NavigatorParamList = {
   walletConnect: undefined
   home: undefined
   settings: undefined
+  challenges: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
@@ -48,6 +49,7 @@ const AppStack = () => {
     >
       <Stack.Screen name="walletConnect" component={ WalletConnectScreen } />
       <Stack.Screen name="home" component={ AppTab } />
+      <Stack.Screen name="challenges" component={ChallengesScreen} />
       {/** 🔥 Your screens go here */}
     </Stack.Navigator>
   )

@@ -15,7 +15,7 @@ const TEXT: TextStyle = {
   color: color.primary,
 }
 
-export interface WalletGeneralCardProps {
+export interface TransportInfoCardProps {
   /**
    * An optional style override useful for padding & margin.
    */
@@ -25,28 +25,22 @@ export interface WalletGeneralCardProps {
 /**
  * Describe your component here
  */
-export const WalletGeneralCard = observer(function WalletGeneralCard(
-  props: WalletGeneralCardProps,
-) {
+export const TransportInfoCard = observer(function TransportInfoCard(props: TransportInfoCardProps) {
   const { style } = props
   const styles = Object.assign({}, CONTAINER, style)
 
   return (
-    <View style={styles} p={1}>
-      <Box alignSelf="center" bg="gray.200" borderRadius="full" p={2}>
-        <Text  fontSize="xl"
-          fontWeight="medium"
-          textAlign="center">0.0000000001 <MaterialCommunityIcons name={"ethereum"}/></Text>
-      </Box>
-      <Box
+    <Box safeAreaTop>
+    <View style={styles} p={1} >
+      <Box 
         bg={{
           linearGradient: {
-            colors: ["lightBlue.300", "violet.800"],
+            colors: ["green.400", "green.800"],
             start: [0, 0],
-            end: [1, 0],
+            end: [1, 1],
           },
         }}
-        p="12"
+        p="6"
         rounded="xl"
         _text={{
           fontSize: "md",
@@ -55,11 +49,14 @@ export const WalletGeneralCard = observer(function WalletGeneralCard(
           textAlign: "center",
         }}
       >
-        <Text fontSize="md"
+
+        <Text fontSize="xl"
           fontWeight="medium"
-          color="warmGray.50">Balance</Text>
-        <Text>Address:</Text>
+          color="warmGray.50">AMA #143</Text>
+        <Text>Service Type: Bus</Text>
       </Box>
     </View>
+    </Box>
+
   )
 })
