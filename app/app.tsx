@@ -26,6 +26,12 @@ import { NativeBaseProvider } from "native-base";
 
 export const NAVIGATION_PERSISTENCE_KEY = "NAVIGATION_STATE"
 
+const LinearGradient = require('expo-linear-gradient').LinearGradient;
+const config = {
+  dependencies: {
+    'linear-gradient': LinearGradient
+  }
+};
 /**
  * This is the root component of our app.
  */
@@ -57,7 +63,7 @@ function App() {
   return (
     <ToggleStorybook>
       <RootStoreProvider value={rootStore}>
-        <NativeBaseProvider>
+        <NativeBaseProvider config={config}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ErrorBoundary catchErrors={"always"}>
             <AppNavigator

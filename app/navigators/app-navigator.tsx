@@ -8,9 +8,10 @@ import React from "react"
 import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen, WalletConnectScreen } from "../screens"
+import { WelcomeScreen, DemoScreen, DemoListScreen, WalletConnectScreen, HomeScreen, SettingsScreen } from "../screens"
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
-
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
  * as well as what properties (if any) they might take when navigating to them.
@@ -29,10 +30,13 @@ export type NavigatorParamList = {
   demoList: undefined
   // 🔥 Your screens go here
   walletConnect: undefined
+  home: undefined
+  settings: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
 const Stack = createNativeStackNavigator<NavigatorParamList>()
+const Tab = createBottomTabNavigator()
 
 const AppStack = () => {
   return (
@@ -42,11 +46,33 @@ const AppStack = () => {
       }}
       initialRouteName="walletConnect"
     >
-      <Stack.Screen name="walletConnect" component={WalletConnectScreen} />
-
+      <Stack.Screen name="walletConnect" component={ WalletConnectScreen } />
+      <Stack.Screen name="home" component={ AppTab } />
       {/** 🔥 Your screens go here */}
     </Stack.Navigator>
   )
+}
+
+const AppTab = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarIcon: ({ focused, color, size }) => {
+          const icons = {
+            Home: "home",
+            Settings: "account-settings",
+          }
+
+          return <MaterialCommunityIcons name={icons[route.name]} color={color} size={size} focused={focused}/>
+        },
+      })}
+    >
+      <Tab.Screen name="Home" component={HomeScreen}/>
+      <Tab.Screen name="Settings" component={SettingsScreen}/>
+    </Tab.Navigator>
+  )
+
 }
 
 interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
@@ -61,6 +87,7 @@ export const AppNavigator = (props: NavigationProps) => {
       {...props}
     >
       <AppStack />
+      {/* <AppTab /> */}
     </NavigationContainer>
   )
 }
