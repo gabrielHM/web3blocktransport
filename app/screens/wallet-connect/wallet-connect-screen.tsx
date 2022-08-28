@@ -7,6 +7,8 @@ import { Screen, Text } from "../../components"
 import { Box, Button, VStack, Image, Center, View, HStack} from "native-base"
 import * as neftify from "@neftify/connect"
 import { useNavigation } from "@react-navigation/native"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { useWalletConnect, withWalletConnect } from '@walletconnect/react-native-dapp';
 // import { useStores } from "../../models"
 import { color } from "../../theme"
 
@@ -24,6 +26,8 @@ const pana: ImageStyle = {
   height: 230,
 }
 
+// const connector = useWalletConnect();
+
 export const WalletConnectScreen: FC<StackScreenProps<NavigatorParamList, "walletConnect">> =
   observer(function WalletConnectScreen() {
     // Pull in one of our MST stores
@@ -36,7 +40,16 @@ export const WalletConnectScreen: FC<StackScreenProps<NavigatorParamList, "walle
       console.log("Connect to wallet pressed.")
     }
     
-    
+    // const connectWalletAction = () => {
+    //   console.log(connector.connected);
+    //   if (!connector.connected){
+    //     // Connect Here
+    //     connector.connect();
+    //   }
+    //   else {
+    //     navigation.navigate('home');
+    //   }
+    // }
     
     
     return (
@@ -55,7 +68,7 @@ export const WalletConnectScreen: FC<StackScreenProps<NavigatorParamList, "walle
             <Center>
               <Image source={genericBusPana} alt="Alternate Text" size="xl" style={pana} />
             </Center>
-            <Button testID="connectWithCustomButton" onPress={()=>{navigation.navigate('home')}}>
+            <Button testID="connectWithCustomButton" onPress={() => {navigation.navigate('home')}}>
               <Text tx="walletConnect.connectWallet" />
             </Button>
           </VStack>

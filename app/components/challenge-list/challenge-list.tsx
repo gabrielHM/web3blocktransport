@@ -64,13 +64,13 @@ export const ChallengeList = observer(function ChallengeList(props: ChallengeLis
 
   return (
     <View style={styles}>
-      <ScrollView
+      {/* <ScrollView
         h="80"
         _contentContainerStyle={{
           mb: "4",
           minW: "72",
         }}
-      >
+      > */}
       <Box>
         <Heading fontSize="lg" p="4" pb="3">
           Challenges
@@ -126,7 +126,7 @@ export const ChallengeList = observer(function ChallengeList(props: ChallengeLis
           keyExtractor={(item) => item.id}
         />
       </Box>
-      </ScrollView>
+      {/* </ScrollView> */}
     </View>
   )
 })

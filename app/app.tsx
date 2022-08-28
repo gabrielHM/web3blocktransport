@@ -12,6 +12,7 @@
 import "./i18n"
 import "./utils/ignore-warnings"
 import React, { useState, useEffect } from "react"
+import { registerRootComponent } from 'expo';
 import { SafeAreaProvider, initialWindowMetrics } from "react-native-safe-area-context"
 import { initFonts } from "./theme/fonts" // expo
 import * as storage from "./utils/storage"
@@ -20,6 +21,10 @@ import { RootStore, RootStoreProvider, setupRootStore } from "./models"
 import { ToggleStorybook } from "../storybook/toggle-storybook"
 import { ErrorBoundary } from "./screens/error/error-boundary"
 import { NativeBaseProvider } from "native-base";
+import WalletConnectProvider from '@walletconnect/react-native-dapp';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from "react-native"
+
 // This puts screens in a native ViewController or Activity. If you want fully native
 // stack navigation, use `createNativeStackNavigator` in place of `createStackNavigator`:
 // https://github.com/kmagiera/react-native-screens#using-native-stack-navigator
@@ -63,6 +68,18 @@ function App() {
   return (
     <ToggleStorybook>
       <RootStoreProvider value={rootStore}>
+      {/* <WalletConnectProvider
+      bridge="https://bridge.walletconnect.org"
+      clientMeta={{
+        description: 'Connect with WalletConnect',
+        url: 'https://walletconnect.org',
+        icons: ['https://walletconnect.org/walletconnect-logo.png'],
+        name: 'WalletConnect',
+      }}
+      redirectUrl={'exp://wg-qka.community.app.exp.direct:80'}
+      storageOptions= {{
+        asyncStorage: AsyncStorage,
+      }}> */}
         <NativeBaseProvider config={config}>
         <SafeAreaProvider initialMetrics={initialWindowMetrics}>
           <ErrorBoundary catchErrors={"always"}>
@@ -73,9 +90,11 @@ function App() {
           </ErrorBoundary>
         </SafeAreaProvider>
         </NativeBaseProvider>
+        {/* </WalletConnectProvider> */}
       </RootStoreProvider>
     </ToggleStorybook>
   )
 }
 
+registerRootComponent(App);
 export default App

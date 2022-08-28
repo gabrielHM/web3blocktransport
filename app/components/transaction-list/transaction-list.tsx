@@ -76,13 +76,13 @@ export const TransactionList = observer(function TransactionList(props: Transact
   const styles = Object.assign({}, CONTAINER, style)
 
   return (
-    <ScrollView
-      h="80"
-      _contentContainerStyle={{
-        mb: "4",
-        minW: "72",
-      }}
-    >
+    // <ScrollView
+    //   h="80"
+    //   _contentContainerStyle={{
+    //     mb: "4",
+    //     minW: "72",
+    //   }}
+    // >
       <Box>
         <Heading fontSize="sm" p="4" pb="3">
           Transactions
@@ -138,6 +138,6 @@ export const TransactionList = observer(function TransactionList(props: Transact
           keyExtractor={(item) => item.id}
         />
       </Box>
-    </ScrollView>
+    // </ScrollView>
   )
 })
